@@ -2,7 +2,7 @@ module Exercise
   module Arrays
     class << self
       def replace(array)
-        max = array.max
+        max = array.reduce(array[0]) { |max_el, el| el > max_el ? el : max_el }
         array.map { |el| el.positive? ? max : el }
       end
 
