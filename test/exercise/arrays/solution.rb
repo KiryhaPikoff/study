@@ -6,17 +6,17 @@ module Exercise
         array.map { |el| el.positive? ? max : el }
       end
 
-      def search(_array, _query)
-        len = _array.length
+      def search(array, query)
+        len = array.length
         med = len / 2
 
-        return -1 if _array.empty?
-        return med if _array[med] == _query
+        return -1 if array.empty?
+        return med if array[med] == query
 
-        if _query < _array[med]
-          search(_array[0..med - 1], _query)
-        elsif _query > _array[med]
-          found = search(_array[med + 1..len], _query)
+        if query < array[med]
+          search(array[0..med - 1], query)
+        elsif query > array[med]
+          found = search(array[med + 1..len], query)
           found == -1 ? -1 : (med + 1) + found
         end
       end
