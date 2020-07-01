@@ -13,9 +13,7 @@ module Exercise
 
       # Написать свою функцию my_map
       def my_map
-        result = MyArray.new
-        my_each { |el| result << yield(el) }
-        result
+        my_reduce(MyArray.new) { |acc, el| acc << yield(el) }
       end
 
       # Написать свою функцию my_compact
