@@ -7,18 +7,18 @@ module Exercise
       end
 
       def search(array, query)
-        len = array.length
-        med = len / 2
+        find = ->(start, finish) do
+          len = finish - start + 1
+          med = len / 2 + start
 
-        return -1 if array.empty?
-        return med if array[med] == query
+          return -1 if len == 0
+          return med if array[med] == query
 
-        if query < array[med]
-          search(array[0..med - 1], query)
-        elsif query > array[med]
-          found = search(array[med + 1..len], query)
-          found == -1 ? -1 : (med + 1) + found
+          query < array[med] ? find.call(start, med - 1) : find.call(med + 1, finish)
         end
+
+        last_index = array.length - 1
+        find.call(0, last_index)
       end
     end
   end
